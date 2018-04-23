@@ -1,0 +1,31 @@
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<div id="map" style="width: 200%; height: 1000px;"></div>
+<div><script>
+
+	var map = L.map('map', {center: [33.679720,130.468322], zoom: 15});
+  L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+    attribution: "<a href='http://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+  }).addTo(map);
+
+	var marker = L.marker([33.679720,130.468322],{title: 'test', draggable: false}).addTo(map);
+	marker.bindPopup("<b>立花山</b><br>ポップアップ");
+
+
+	var photoLayer = L.photo.cluster().on('click', function (evt) {
+		var photo = evt.layer.photo,
+			template = '<img src="{url}"/></a><p>{caption}</p>';
+
+		evt.layer.bindPopup(L.Util.template(template, photo), {
+			className: 'leaflet-popup-photo',
+			minWidth: 400
+		}).openPopup();
+	});
+
+	photoLayer.add([{"lat":59.2606475,"lng":130.468322,"thumbnail":"","url":"https://tguchi.s3.amazonaws.com/uploads/topic_item/image/48011/retina_pixta_24882121_S.jpg","video":"","caption":"Nice start"}]).addTo(map);
+	map.fitBounds(photoLayer.getBounds());
+
+
+
+</script></div>
