@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 from werkzeug import secure_filename
 app = Flask(__name__)
 
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = 'static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -24,8 +24,8 @@ def send():
         if img_file and allowed_file(img_file.filename):
             filename = secure_filename(img_file.filename)
             img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            img_url = '/uploads/' + filename
-            return render_template('norvegiana.html', img_url=img_url)
+            img_url = 'static/' + filename
+            return render_template('cartodb.html', img_url=img_url)
         else:
             return ''' <p>許可されていない拡張子です</p> '''
     else:
