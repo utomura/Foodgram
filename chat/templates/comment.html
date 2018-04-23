@@ -1,0 +1,30 @@
+<!-- templates/show.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset = "UFT-8">
+    <title>ぺちゃくちゃ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<a href="{{ url_for('index') }}"><b><<</b></a>
+<div id="logo"><img src="{{ url_for('static', filename='images3.png') }}"></div>
+{% if img_name %}
+<h1>{{ img_name }}</h1>
+{% endif %}
+<div id="app">
+    <form action='/comment/add'>
+        <input type="hidden" name="name" value={{ name_f }}>
+        <input type="hidden" name="img" value={{ img_name }}>
+        <input type='text' name='user' placeholder='name'>
+        <input type='text' name='message' placeholder='message'>
+        <input type='submit'>
+    </form>
+
+    {% for comment in comments %}
+        <h2>{{ comment.user }}</h2>
+        <p>{{ comment.message }}</p>
+    {% endfor %}
+</div>
+</body>
+</html>
