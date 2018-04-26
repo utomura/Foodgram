@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="static/Leaflet.Photo.css" />
 	<link rel="stylesheet" href="static/css/map.css" />
 </head>
+<input type="../static/img_file.png" id="selfile"><br>
 <body>
 	<div id="map"></div>
 	<script src="static/lib/reqwest.min.js"></script>
@@ -37,11 +38,20 @@
 
 		evt.layer.bindPopup(L.Util.template(template, photo), {
 			className: 'leaflet-popup-photo',
-			minWidth: 300
+			minWidth: 300,
 		}).openPopup();
 	});
 
-	photoLayer.add([{"lat":37.10449,"lng":140.900978,"thumbnail":"https://tguchi.s3.amazonaws.com/uploads/topic_item/image/48011/retina_pixta_24882121_S.jpg","url":"https://tguchi.s3.amazonaws.com/uploads/topic_item/image/48011/retina_pixta_24882121_S.jpg","video":"","caption":"oishi banana"}]).addTo(map);
+	//画像ファイルの中身を取得するvar form = document.forms.myform000000000000000000
+
+	var obj1 = document.getElementById("selfile");
+	console.log(obj1);
+	var x = obj1.getAttribute("type");
+	console.log(x);
+
+
+	photoLayer.add([{"lat":37.053148,"lng":140.892416,"thumbnail":x,"url":x,"video":"","caption":"oishi banana"}]).addTo(map);
+	photoLayer.add([{"lat":40.053148,"lng":150.892416,"thumbnail":"http://epoch.jp/rc/capsule/data/img/bananaobake_2.jpg","url":"http://epoch.jp/rc/capsule/data/img/bananaobake_2.jpg","video":"","caption":"oishi banana"}]).addTo(map);
 	map.fitBounds(photoLayer.getBounds());
 	</script>
 </body>
