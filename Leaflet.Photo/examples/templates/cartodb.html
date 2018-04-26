@@ -12,6 +12,12 @@
 </head>
 <input type="../static/" id="selfile"><br>
 <body>
+	<form action='/comment' position="absolute">
+		<input id="foodname" type="hidden" name="name" value="food1">
+		<input id="picname" type="hidden" name="img">
+		<input id="picture" type="hidden" name="pic" value={{ file_url }}>
+		<input type='submit'>
+	</form>
 	<div id="map"></div>
 	<script src="static/lib/reqwest.min.js"></script>
 	<script src="static/lib/leaflet/leaflet.js"></script>
@@ -46,6 +52,7 @@
 	photoLayer.add([{"lat":{{ img_lat }},"lng":{{ img_lng }},"thumbnail":"{{ img_url }}","url":"{{ img_url }}","video":"","caption":"oishi banana"}]).addTo(map);
 	photoLayer.add([{"lat":40.053148,"lng":150.892416,"thumbnail":"http://epoch.jp/rc/capsule/data/img/bananaobake_2.jpg","url":"http://epoch.jp/rc/capsule/data/img/bananaobake_2.jpg","video":"","caption":"oishi banana"}]).addTo(map);
 	map.fitBounds(photoLayer.getBounds());
+
 	</script>
 </body>
 </html>
